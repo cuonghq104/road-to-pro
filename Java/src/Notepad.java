@@ -59,6 +59,9 @@ public class Notepad {
         node.prev = cursor;
 
         cursor.next = node;
+        cursor = node;
+
+        currentRow.length++;
         idxC++;
     }
 
@@ -120,7 +123,7 @@ public class Notepad {
         cursor = tmp;
         return cursor.value;
     }
-    
+
     void move_cursor(int cmd) {
         if (cmd == 2)  {
 
@@ -189,5 +192,43 @@ public class Notepad {
                 idxR++;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Notepad notepad = new Notepad();
+        notepad.init(5);
+        notepad.addText('H');
+        notepad.addText('i');
+        notepad.newLine();
+        notepad.addText('H');
+        notepad.addText('e');
+        notepad.addText('l');
+        notepad.addText('l');
+        notepad.addText('o');
+        notepad.newLine();
+
+        System.out.println('e' == notepad.get_char(2, 5));
+        System.out.println('i' == notepad.get_char(1, 2));
+        notepad.addText('k');
+        notepad.move_cursor(2);
+        notepad.move_cursor(3);
+        notepad.move_cursor(1);
+        notepad.move_cursor(1);
+        notepad.move_cursor(0);
+        notepad.move_cursor(3);
+        notepad.newLine();
+
+        notepad.addText('d');
+        notepad.addText('g');
+        notepad.move_cursor(2);
+        notepad.move_cursor(1);
+        notepad.move_cursor(0);
+
+        notepad.addText('u');
+        notepad.newLine();
+        notepad.addText('r');
+        notepad.newLine();
+
+        System.out.println(notepad.get_char(4, 1));
     }
 }
